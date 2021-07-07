@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: addservice-deploy
+  namespace: calculator
+spec:
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    
+  replicas: 2
+  
+  selector:
+    matchLabels:
+      app: addserviceapp
+  
+  template:
+    metadata:
+      labels:
+        app: addserviceapp
+    spec:
+      volumes:
+      - name: docker-insecure-registries
+        configMap:
+          name: harbor-allow-insecure-registries
+          items:
+            - key: daemon.json
+              path: daemon.json
+      - name: cache
+        hostPath:
+          path: /tmp
+          type: Directory
+      imagePullSecrets:
+      - name: harbor-regcred
+      containers:
+      - name: addserviceapp
+        image: harbor-svc.haas-422.pez.vmware.com/anahid/addservice:latest
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        volumeMounts:
+        - name: cache
+          mountPath: /var/lib/docker
+        - name: docker-insecure-registries
+          mountPath: /etc/docker/daemon.json
+          subPath: daemon.json
+        # envFrom:
+        #   - configMapRef:
+        #       name: foobar-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: addservice
+  namespace: calculator
+spec:
+  selector:
+    app: addserviceapp
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: ClusterIP # LoadBalancer # NodePort # 
