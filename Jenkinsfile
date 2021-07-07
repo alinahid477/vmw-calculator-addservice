@@ -46,7 +46,7 @@ spec:
     node(POD_LABEL) {
         
         stage("GIT") {
-          git credentialsId: 'github-cred', url: 'https://github.com/alinahid477/VMW.git'
+          git credentialsId: 'github-cred', url: 'https://github.com/alinahid477/vmw-calculator-addservice.git'
         }
         
         stage("MAVEN") {
