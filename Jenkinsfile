@@ -78,12 +78,12 @@ spec:
         
         stage("K8S") {
           withKubeConfig([credentialsId: 'jenkins-robot-token',
-                      serverUrl: 'https://192.168.220.7:6443',
-                      clusterName: 'tmc-cluster-c2',
+                      serverUrl: 'https://192.168.220.9:6443',
+                      clusterName: 'apps-g1',
                       namespace: 'calculator'
                       ]) {
             sh 'curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"'
-            sh 'ls -la'
+            sh 'cat $(ls -la | grep config | awk '{print $9}')'
             sh 'chmod 777 ./kubectl'
             sh './kubectl apply -f kubernetes/deployment.yaml'
             // sh './kubectl patch deployment addservice-deploy -p \"{\\"spec\\": {\\"template\\": {\\"metadata\\": { \\"labels\\": {  \\"redeploy\\": \\"$(date +%s)\\"}}}}}\" -n calculator'
