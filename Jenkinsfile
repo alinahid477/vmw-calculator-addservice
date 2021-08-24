@@ -85,8 +85,8 @@ spec:
             sh 'curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"'
             sh 'ls -la'
             sh 'chmod 777 ./kubectl'
-            // sh './kubectl apply -f kubernetes/deployment.yaml'
-            sh './kubectl patch deployment addservice-deploy -p \"{\\"spec\\": {\\"template\\": {\\"metadata\\": { \\"labels\\": {  \\"redeploy\\": \\"$(date +%s)\\"}}}}}\" -n calculator'
+            sh './kubectl apply -f kubernetes/deployment.yaml'
+            // sh './kubectl patch deployment addservice-deploy -p \"{\\"spec\\": {\\"template\\": {\\"metadata\\": { \\"labels\\": {  \\"redeploy\\": \\"$(date +%s)\\"}}}}}\" -n calculator'
           }
         }
                   
