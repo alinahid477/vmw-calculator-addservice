@@ -1,4 +1,4 @@
-package com.calc.addservice.addservice;
+package com.calc.addservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
