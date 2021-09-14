@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: addservice-deploy
-  namespace: calculator
+  namespace: default
 spec:
   minReadySeconds: 10
   strategy:
@@ -60,7 +60,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: addservice
-  namespace: calculator
+  namespace: default
 spec:
   selector:
     app: addserviceapp
