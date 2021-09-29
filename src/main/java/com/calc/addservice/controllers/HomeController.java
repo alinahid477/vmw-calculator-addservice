@@ -19,11 +19,17 @@ public class HomeController {
     @Autowired
     private AddService addService;
 
+    @RequestMapping(method=RequestMethod.GET)
+    public ResponseEntity<GenericResponseObject> index() {
+        
+        return new ResponseEntity<>(new GenericResponseObject(){ { setSuccess(true); setMessage("Hello!! This is add service. My other endpoints are: [GET]/healthcheck and [POST]/sum."); } }, 
+            HttpStatus.OK);     
+    }
 
     @RequestMapping(value="healthcheck", method=RequestMethod.GET)
     public ResponseEntity<GenericResponseObject> healthCheck() {
         
-        return new ResponseEntity<>(new GenericResponseObject(){ { setSuccess(true); setMessage("addservice is running. Thanks"); } }, 
+        return new ResponseEntity<>(new GenericResponseObject(){ { setSuccess(true); setMessage("Hello!! Addservice is running. Thanks"); } }, 
             HttpStatus.OK);     
     }
 
