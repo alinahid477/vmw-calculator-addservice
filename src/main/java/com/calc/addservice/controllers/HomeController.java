@@ -22,7 +22,7 @@ public class HomeController {
     @RequestMapping(method=RequestMethod.GET)
     public ResponseEntity<GenericResponseObject> index() {
         
-        return new ResponseEntity<>(new GenericResponseObject(){ { setSuccess(true); setMessage("Hello!! This is add service. My other endpoints are: [GET]/healthcheck and [POST]/sum."); } }, 
+        return new ResponseEntity<>(new GenericResponseObject(){ { setSuccess(true); setMessage("Hello!! This is add service. My other endpoints are: [GET]/healthcheck and [POST]/sum. Use Wisely!!"); } }, 
             HttpStatus.OK);     
     }
 
