@@ -31,7 +31,7 @@ spec:
       - name: default-builder-registry-cred
       containers:
       - name: addserviceapp
-        image: anahidcalcacr.azurecr.io/addservice:latest
+        image: anahidcalcacr.azurecr.io/calcaddservice:latest
         ports:
         - containerPort: 8080
         livenessProbe:

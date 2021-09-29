@@ -37,7 +37,7 @@ spec:
       - name: harbor-regcred
       containers:
       - name: addserviceapp
-        image: harbor-svc.haas-422.pez.vmware.com/anahid/addservice:latest
+        image: harbor-svc.haas-422.pez.vmware.com/anahid/calcaddservice:latest
         ports:
         - containerPort: 8080
         livenessProbe:
