@@ -32,6 +32,7 @@ spec:
       containers:
       - name: addserviceapp
         image: anahidcalcacr.azurecr.io/calcaddservice:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -58,4 +59,4 @@ spec:
   ports:
   - port: 80
     targetPort: 8080
-  type: ClusterIP # LoadBalancer # NodePort # 
+  type: LoadBalancer # ClusterIP NodePort
